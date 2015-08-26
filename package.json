@@ -1,0 +1,35 @@
+{
+  "name": "append-hook",
+  "main": "index.js",
+  "version": "0.0.0",
+  "description": "virtual-dom hook for element append",
+  "license": "MIT",
+  "repository": "bendrucker/append-hook",
+  "author": {
+    "name": "Ben Drucker",
+    "email": "bvdrucker@gmail.com",
+    "url": "bendrucker.me"
+  },
+  "scripts": {
+    "test": "standard && tape test.js"
+  },
+  "keywords": [
+    "virtual-dom",
+    "hook",
+    "dom",
+    "append"
+  ],
+  "devDependencies": {
+    "global": "~4.3.0",
+    "standard": "^4.0.0",
+    "tape": "^4.0.0",
+    "virtual-dom": "~2.1.1"
+  },
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {
+    "ap": "~0.2.0",
+    "next-tick": "~0.2.2"
+  }
+}
