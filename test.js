@@ -3,51 +3,28 @@
 var test = require('tape')
 var h = require('virtual-dom/h')
 var createElement = require('virtual-dom/create-element')
-var document = require('global/document')
-var proxyquire = require('proxyquire')
+var patch = require('virtual-dom/patch')
+var diff = require('virtual-dom/diff')
+var Append = require('./')
 
 test(function (t) {
-  t.plan(3)
+  t.plan(2)
 
-  var Append = proxyquire('./', {
-    'global/document': {
-      body: {
-        contains: function contains () {
-          // element does not yet exist in body
-          // it's being appended
-          return false
-        }
-      }
-    }
-  })
+  var vtree = h('div', {
+    hook: Append(callback),
+    key: 'foo'
+  }, 'Hello')
 
-  var vtree = h('div', {hook: Append(callback)}, 'Hello')
-  var rootNode = createElement(vtree)
-  document.body.appendChild(rootNode)
+  var element = createElement(vtree)
 
   function callback (node) {
     t.ok(node)
-    t.ok(node.parentNode)
     t.equal(node.childNodes[0].data, 'Hello')
-    document.body.removeChild(rootNode)
+
+    var vtree2 = h('div', {
+      hook: Append(t.fail.bind(t, 'Append called twice')),
+      key: 'foo'
+    }, 'Hello Two')
+    patch(element, diff(vtree, vtree2))
   }
-})
-
-test(function (t) {
-  var Append = proxyquire('./', {
-    'global/document': {
-      body: {
-        contains: function contains () {
-          // element does exist in body
-          // it's not being appended
-          return true
-        }
-      }
-    }
-  })
-
-  var vtree = h('div', {hook: Append(t.fail.bind(t, 'hook should not run'))}, 'Hello')
-  var rootNode = createElement(vtree)
-  document.body.appendChild(rootNode)
-  t.end()
 })
