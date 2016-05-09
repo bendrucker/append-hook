@@ -1,7 +1,7 @@
 {
   "name": "append-hook",
   "main": "index.js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "virtual-dom hook for element append",
   "license": "MIT",
   "repository": "bendrucker/append-hook",
