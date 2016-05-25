@@ -28,3 +28,13 @@ test(function (t) {
     patch(element, diff(vtree, vtree2))
   }
 })
+
+test('multiple append hooks on one node', function (t) {
+  t.plan(2)
+  var vtree = h('div', {
+    hook1: Append(() => t.pass('hook1')),
+    hook2: Append(() => t.pass('hook2'))
+  })
+
+  createElement(vtree)
+})

@@ -4,13 +4,14 @@ var Hook = require('virtual-hook')
 var nextTick = require('next-tick')
 var partial = require('ap').partial
 
-var key = '__APPEND_HOOK_KEY'
+var KEY = '__APPEND_HOOK_KEY__'
 
 module.exports = AppendHook
 
 function AppendHook (callback) {
   return Hook({
-    hook: function hook (node) {
+    hook: function hook (node, vnodeKey) {
+      var key = KEY + vnodeKey
       if (node[key]) return
 
       node[key] = true
