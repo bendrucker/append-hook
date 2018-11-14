@@ -1,4 +1,4 @@
-# append-hook [![Build Status](https://travis-ci.org/bendrucker/append-hook.svg?branch=master)](https://travis-ci.org/bendrucker/append-hook)
+# append-hook [![Build Status](https://travis-ci.org/bendrucker/append-hook.svg?branch=master)](https://travis-ci.org/bendrucker/append-hook) [![Greenkeeper badge](https://badges.greenkeeper.io/bendrucker/append-hook.svg)](https://greenkeeper.io/)
 
 > virtual-dom hook for element append
 
